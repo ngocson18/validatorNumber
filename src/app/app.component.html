@@ -1,0 +1,23 @@
+<form #userForm="ngForm" (ngSubmit) = "onFormSubmit(userForm)">
+  <table>
+    <tr>
+      <td>
+        Mobile Number
+      </td>
+      <td>
+        <input name = "mobileNumber" [ngModel] = "user.mobileNumber" [pattern] = "modNumberPattern" #modNumber= "ngModel" />
+        <div *ngIf = "modNumber.errors && userForm.submitted && !isValidFormSubmitted" [ngClass] = "'errors'">
+          <div *ngIf = "(modNumber.errors.pattern); elseBlock">
+            Số điện thoại không tồn tại
+          </div>
+          <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan = "2">
+        <button>OK</button>
+      </td>
+    </tr>
+  </table>
+</form>
